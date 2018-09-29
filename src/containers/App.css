@@ -1,28 +1,82 @@
-.App {
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+/*
+*
+* COLOR VARIABLES
+*
+*/
+
+:root {
+  --jungle-green: #26A69A;
+  --java: #1DE9B6;
+
+  --alabaster: #fafafa;
+  --gallery: #eee;
+  --alto: #dedede;
+	--silver-chalice: #9e9e9e;
+	--tundora: #424242;
+	--mine-shaft: #212121;
+}
+
+
+/*
+*
+* BASE STYLES
+*
+*/
+
+html, body, main, #root {
+  height: 100%;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: var(--alabaster);
+}
+
+main {
+  width: 100%;
+  display: flex;
+	flex-wrap: wrap;
+}
+
+
+
+/*
+*
+* MAIN PAGE
+*
+*/
+
+/* === Top Navigation === */
+
+.top-nav {
+  padding: 10px 0;
+  background: var(--mine-shaft);
+}
+
+.top-nav h1 {
+  margin: 0;
   text-align: center;
+  letter-spacing: 10px;
+  color: var(--alabaster);
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+
+/* === List View === */
+
+.list-view{
+  order: 1;
+	width: 30%;
+  background: var(--alabaster);
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
 
-.App-title {
-  font-size: 1.5em;
-}
+/* === Google Map === */
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.map {
+	order: 2;
+	width: 70%;
+	margin: 0;
+  background: var(--jungle-green) none repeat scroll 0 0;
 }
