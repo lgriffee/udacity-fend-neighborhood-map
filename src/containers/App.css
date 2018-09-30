@@ -58,6 +58,7 @@ main {
 .top-nav h1 {
   margin: 0;
   text-align: center;
+  text-transform: uppercase;
   letter-spacing: 10px;
   color: var(--alabaster);
 }
@@ -69,6 +70,14 @@ main {
   order: 1;
 	width: 30%;
   background: var(--alabaster);
+}
+
+.list-view input {
+  width: 100%;
+  padding: 15px 10px;
+  font-size: 1.25em;
+  border: none;
+  outline: none;
 }
 
 
