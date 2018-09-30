@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
 import MapContainer from '../components/MapContainer'
+import LocationMarkers from '../api/LocationMarkers.json';
 import './App.css';
 
 class App extends Component {
+
+  state = {
+    markers: []
+  }
+
+  componentDidMount(){
+    this.setState({ markers: LocationMarkers })
+  }
+
   render() {
+    const { markers } = this.state
     return (
       <div>
         <header>
@@ -14,7 +25,9 @@ class App extends Component {
 
         <main>
           <section className="map" role="application" aria-label="Map of Lander">
-            <MapContainer/>
+            <MapContainer
+              markers={this.state.markers}
+            />
           </section>
 
           <section className="list-view">

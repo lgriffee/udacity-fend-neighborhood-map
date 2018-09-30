@@ -1,20 +1,27 @@
 import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import PropTypes from 'prop-types'
 
 // Based off documentation examples https://www.npmjs.com/package/google-maps-react
 export class MapContainer extends Component {
+
+  static propTypes = {
+      markers: PropTypes.array.isRequired
+  }
+
   state = {
     showingInfoWindow: false,
     activeMarker: {},
-    selectedPlace: {},
+    selectedPlace: {}
   };
 
-  onMarkerClick = (props, marker, e) =>
+  onMarkerClick = (props, marker, e) => {
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
-    });
+    })
+  };
 
   onMapClicked = (props) => {
     if (this.state.showingInfoWindow) {
@@ -26,56 +33,87 @@ export class MapContainer extends Component {
   };
 
   render() {
-    const {google} = this.props;
+    const {google, markers} = this.props;
 
-    const style = {
+    // let getAnimation = (marker) => {
+    //   console.log(marker);
+    //   if (this.state.activeMarker.name ){
+    //     return google.maps.Animation.BOUNCE;
+    //   }else{
+    //     return google.maps.Animation.DROP;
+    //   }
+    // }
+
+
+    const mapStyle = {
       width: '70%',
       height: '91%'
     }
+
     return (
       <Map
         google={this.props.google}
-        style={style}
+        style={mapStyle}
         initialCenter={{
           lat: 42.833131,
           lng: -108.731196}}
-        zoom={15}
+        zoom={14}
         onClick={this.onMapClicked}>
 
-        <Marker
+        {markers.map((marker) =>
+          <Marker
+            onClick={this.onMarkerClick}
+            title={marker.title}
+            name={marker.name}
+            position={marker.position}
+            icon={marker.icon}
+            animation={marker.animation}
+          />
+       )}
+
+        {/* <Marker
           onClick={this.onMarkerClick}
           title={'Thai Chef'}
           name={'Thai Chef'}
-          position={{lat: 42.826491, lng: -108.717664}}
-          // icon={{
-          //   url: "../icons/restaurant.svg",
-          //   anchor: new google.maps.Point(32,32),
-          //   scaledSize: new google.maps.Size(64,64)}}
+          position={{lat: 42.825559, lng: -108.717673}}
+          icon={{
+            url: "http://maps.google.com/mapfiles/ms/icons/restaurant.png",
+            anchor: new google.maps.Point(15,15),
+            scaledSize: new google.maps.Size(30,30)}}
+          // animation={google.maps.Animation.DROP}
           />
 
         <Marker
           onClick={this.onMarkerClick}
           title={'Cowfish'}
           name={'Cowfish'}
-          position={{lat: 42.832968, lng: -108.727977}}/>
+          position={{lat: 42.832968, lng: -108.727977}}
+        // animation={google.maps.Animation.DROP}
+      />
 
         <Marker
           onClick={this.onMarkerClick}
           title={'Gannet Grill'}
           name={'Gannet Grill'}
-          position={{lat: 42.832747, lng: -108.727677}}/>
+          position={{lat: 42.832747, lng: -108.727677}}
+        // animation={google.maps.Animation.DROP}
+      />
 
         <Marker
           onClick={this.onMarkerClick}
           title={'NOLS'}
           name={'NOLS'}
-          position={{lat: 42.834521, lng: -108.730227}}/>
+          position={{lat: 42.834521, lng: -108.730227}}
+        // animation={google.maps.Animation.DROP}
+      />
 
         <Marker
           onClick={this.onMarkerClick}
           title={'Maverick Restaurant & Lounge'}
           name={'Maverick Restaurant & Lounge'}
-          position={{lat: 42.835623, lng: -108.741328}}/>
+          position={{lat: 42.835623, lng: -108.741328}}
+          // animation={google.maps.Animation.DROP}
+        /> */}
 
 
         <InfoWindow

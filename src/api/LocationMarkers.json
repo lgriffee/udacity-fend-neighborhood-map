@@ -1,0 +1,27 @@
+[
+  {"title": "Thai Chef",
+   "name": "Thai Chef",
+   "position": {"lat": 42.825559, "lng": -108.717673},
+   "icon": {"url": "http://maps.google.com/mapfiles/ms/icons/restaurant.png"}
+  },
+  {"title": "Cowfish",
+   "name": "Cowfish",
+   "position": {"lat": 42.832968, "lng": -108.727977},
+   "icon": {"url": "http://maps.google.com/mapfiles/ms/icons/restaurant.png"}
+  },
+  {"title": "Gannet Grill",
+   "name": "Gannet Grill",
+   "position": {"lat": 42.832747, "lng": -108.727677},
+   "icon": {"url": "http://maps.google.com/mapfiles/ms/icons/restaurant.png"}
+  },
+  {"title": "NOLS",
+   "name": "NOLS",
+   "position": {"lat": 42.834521, "lng": -108.730227},
+   "icon": {"url": "http://maps.google.com/mapfiles/ms/icons/orange-dot.png"}
+  },
+  {"title": "Maverick Restaurant & Lounge",
+   "name": "Maverick Restaurant & Lounge",
+   "position": {"lat": 42.835623, "lng": -108.741328},
+   "icon": {"url": "http://maps.google.com/mapfiles/ms/icons/bar.png"}
+  }
+]
