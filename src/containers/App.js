@@ -13,10 +13,24 @@ class App extends Component {
     this.setState({ markers: LocationMarkers })
   }
 
+  updateMarkers(type){
+    if (type === "all"){
+      this.setState({ markers: LocationMarkers })
+      return
+    }else{
+      let typeMarkers = LocationMarkers.filter(marker => marker.type === type);
+      this.setState({ markers: typeMarkers })
+    }
+  }
+
+  onListItemSelect(marker) {
+
+  }
+
   render() {
     const { markers } = this.state
     return (
-      <div>
+      <div className="app">
         <header>
           <nav className="top-nav">
             <h1>Lander</h1>
@@ -24,20 +38,32 @@ class App extends Component {
         </header>
 
         <main>
-          <section className="map" role="application" aria-label="Map of Lander">
-            <MapContainer
-              markers={this.state.markers}
-            />
-          </section>
+          <MapContainer
+             markers={this.state.markers}
+          />
 
           <section className="list-view">
-            <h2>List View</h2>
-            <input
-              type="text"
-              placeholder="Search"
-              // value={query}
-              // onChange= {(event) => this.updateQuery(event.target.value)}
-            />
+            <select
+              className="location-select"
+              name="location-types"
+              onChange={(event) => this.updateMarkers(event.target.value)}
+              aria-label="location type filter">
+                <option value="all">Select Location Type:</option>
+                <option value="restaurant">Restaurant</option>
+                <option value="bar">Bar</option>
+                <option value="store">Shopping</option>
+                <option value="business">Business</option>
+            </select>
+            <hr/>
+            <ol className="locations-list">
+              {markers.map((marker) =>
+                <a
+                  key={marker.title}
+                  onClick={this.onListItemSelect(marker)}>
+                  {marker.title}
+                </a>
+              )}
+            </ol>
           </section>
         </main>
       </div>
