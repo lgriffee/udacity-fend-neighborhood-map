@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import MapContainer from '../components/MapContainer'
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react'
+import LanderMap from '../components/LanderMap'
+import {Marker} from 'google-maps-react'
 import LocationMarkers from '../api/LocationMarkers.json'
 import './App.css'
 
@@ -101,15 +102,7 @@ class App extends Component {
         </header>
 
         <main>
-          <MapContainer
-             markers={this.state.markers}
-             showingInfoWindow={this.state.showingInfoWindow}
-             activeMarker={this.state.activeMarker}
-             selectedPlace={this.state.selectedPlace}
-             onMarkerClick={this.onMarkerClick}
-             onMapClicked={this.onMapClicked}
-             mysteriousFunction={this.mysteriousFunction}
-          />
+          <LanderMap/>
 
           <section className="list-view">
             <select
