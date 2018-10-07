@@ -7,9 +7,11 @@ This project is a app I built as part of the Udacity Front-End Web Developer Nan
 1. Download/clone this repository
 2. Install all project dependencies and start up a server to serve up the site files from your local computer.
     * In a terminal, install all project dependencies in with `npm install`
-    * Then start the development server with `npm start`
+    * Create an optimized production build with `npm run build`
+    * Install the npm serve command with `npm install -g serve`
+    * Start the build server with `serve -s build`
     * If you don't have npm installed, navigate to npm's [website](https://www.npmjs.com/get-npm) to download and install the software.
 
-## Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+## Built With
+  * [react-google-maps](https://github.com/tomchentw/react-google-maps) - Used to create a set of React components wrapping underlying Google Maps API instances
+  * [Create React App](https://github.com/facebookincubator/create-react-app) - Used to bootstrap the project
