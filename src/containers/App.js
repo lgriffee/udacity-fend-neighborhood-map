@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import MapContainer from '../components/MapContainer'
 import LanderMap from '../components/LanderMap'
-import {Marker} from 'google-maps-react'
 import LocationMarkers from '../api/LocationMarkers.json'
 import './App.css'
 
@@ -19,6 +17,7 @@ class App extends Component {
   }
 
   filterMarkers(type){
+    this.closeMarkers()
     if (type === "all"){
      this.setState({ markers: LocationMarkers })
       return
@@ -28,8 +27,17 @@ class App extends Component {
     }
   }
 
+  closeMarkers = () => {
+    const closedMarkers = this.state.markers.map(marker => {
+      marker.isOpen = false
+      return marker
+    })
+    this.setState({ markers: closedMarkers })
+  }
+
  // Based off documentation examples react-google-maps documentation
   onMarkerClick = (marker) => {
+    this.closeMarkers()
     marker.isOpen = true
     this.setState({ markers: this.state.markers })
   }
@@ -81,9 +89,9 @@ class App extends Component {
             </select>
             <hr/>
             <ol className="locations-list">
-              {markers.map((marker) =>
+              {markers.map((marker, index) =>
                 <a
-                  key={marker.title}
+                  key={index}
                   onClick={(event) => this.onListClick(event, marker)}>
                   {marker.title}
                 </a>

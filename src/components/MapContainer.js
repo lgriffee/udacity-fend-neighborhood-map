@@ -32,7 +32,7 @@ export class MapContainer extends Component {
         onClick={onMapClicked}>
 
         {
-          markers.map( (marker) => {return marker})
+          markers.map( marker => {return marker})
         }
 
         {/* {markers.map((marker) =>
