@@ -10,85 +10,46 @@ class App extends Component {
   state = {
     markers: [],
     showingInfoWindow: false,
-    activeMarker: {},
-    selectedPlace: {}
+    activeMarker: {}
   }
 
   componentDidMount(){
 
-    // this.setState({ markers: LocationMarkers })
-    const test = LocationMarkers.map((marker) =>
-      <Marker
-        key={marker.title}
-        className={marker.type}
-        onClick={this.onMarkerClick}
-        title={marker.title}
-        name={marker.name}
-        position={marker.position}
-        icon={marker.icon}
-        animation={null}
-        ref={React.createRef()}
-      />
-   )
-   this.setState({ markers: test })
+    this.setState({ markers: LocationMarkers })
   }
 
   filterMarkers(type){
-    const test = LocationMarkers.map((marker) =>
-      <Marker
-        key={marker.title}
-        className={marker.type}
-        onClick={this.onMarkerClick}
-        title={marker.title}
-        name={marker.name}
-        position={marker.position}
-        icon={marker.icon}
-        animation={null}
-        ref={React.createRef()}
-      />
-   )
     if (type === "all"){
-     this.setState({ markers: test })
+     this.setState({ markers: LocationMarkers })
       return
     }else{
-      // let typeMarkers = LocationMarkers.filter(marker => marker.type === type)
-      // this.setState({ markers: typeMarkers })
-      let typeMarkers = LocationMarkers.filter(marker => marker.props.className === type)
+      let typeMarkers = LocationMarkers.filter(marker => marker.type === type)
       this.setState({ markers: typeMarkers })
     }
   }
 
-  onMarkerClick = (props, marker, e) => {
-    console.log(props)
-    console.log(marker)
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    })
-  };
-
-  onMapClicked = (props) => {
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
-      })
-    }
-  };
-
-  mysteriousFunction = () => {
-
+ // Based off documentation examples react-google-maps documentation
+  onMarkerClick = (marker) => {
+    marker.isOpen = true
+    this.setState({ markers: this.state.markers })
   }
 
-  onListClick = (e, marker) => {
-    e.preventDefault()
-    console.log(marker)
-    this.onMarkerClick(marker.props, marker.ref)
-    // this.onMarkerClick(marker, e)
-    // console.log(marker.title)
-    // console.log('The link was clicked.')
-  };
+  // Based off documentation examples react-google-maps documentation
+  // onMapClicked = (props) => {
+  //   if (this.state.showingInfoWindow) {
+  //     this.setState({
+  //       showingInfoWindow: false,
+  //       activeMarker: null
+  //     })
+  //   }
+  // };
+
+
+  // onListClick = (e, marker) => {
+  //   e.preventDefault()
+  //   console.log(marker)
+  //   this.onMarkerClick(marker.props, marker.ref)
+  // };
 
 
   render() {
@@ -102,7 +63,9 @@ class App extends Component {
         </header>
 
         <main>
-          <LanderMap/>
+          <LanderMap
+            markers={this.state.markers}
+            onMarkerClick={this.onMarkerClick}/>
 
           <section className="list-view">
             <select
@@ -120,9 +83,9 @@ class App extends Component {
             <ol className="locations-list">
               {markers.map((marker) =>
                 <a
-                  key={marker.key}
+                  key={marker.title}
                   onClick={(event) => this.onListClick(event, marker)}>
-                  {marker.props.title}
+                  {marker.title}
                 </a>
               )}
             </ol>

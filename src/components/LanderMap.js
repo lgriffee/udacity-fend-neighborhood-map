@@ -1,15 +1,38 @@
 import React, { Component } from 'react'
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps'
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
+import PropTypes from 'prop-types'
 
-// Based off documentation example
-const LanderMap = () => {
+// Based off documentation example https://tomchentw.github.io/react-google-maps/
+const LanderMap = (props) => {
+
+  LanderMap.propTypes = {
+      markers: PropTypes.array.isRequired,
+      onMarkerClick: PropTypes.func.isRequired
+  }
+
+  const { markers, onMarkerClick } = props
 
   const MyMapComponent = withScriptjs(withGoogleMap((props) =>
       <GoogleMap
-        defaultZoom={8}
-        defaultCenter={{ lat: -34.397, lng: 150.644 }}>
-        {props.isMarkerShown &&
-          <Marker position={{ lat: -34.397, lng: 150.644 }} />}
+        defaultZoom={14}
+        defaultCenter={{ lat: 42.833131, lng: -108.731196 }}>
+          {markers.map((marker, index) =>
+            <Marker
+              key={index}
+              onClick={() => onMarkerClick(marker)}
+              title={marker.title}
+              name={marker.name}
+              position={marker.position}
+              icon={marker.icon}
+              // animation={google.maps.Animation.DROP}
+            >
+              {marker.isOpen && <InfoWindow>
+                <div>
+                  <p>{marker.name}</p>
+                </div>
+              </InfoWindow>}
+            </Marker>
+         )} */}
       </GoogleMap>
   ))
 
