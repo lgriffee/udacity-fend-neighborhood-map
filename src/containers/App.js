@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import LanderMap from '../components/LanderMap'
-import LocationMarkers from '../api/LocationMarkers.json'
+import LocationMarkers from '../data/LocationMarkers.json'
 import './App.css'
 
 class App extends Component {
@@ -12,7 +12,6 @@ class App extends Component {
   }
 
   componentDidMount(){
-
     this.setState({ markers: LocationMarkers })
   }
 
@@ -30,34 +29,27 @@ class App extends Component {
   closeMarkers = () => {
     const closedMarkers = this.state.markers.map(marker => {
       marker.isOpen = false
+      marker.animation = null
       return marker
     })
     this.setState({ markers: closedMarkers })
   }
 
- // Based off documentation examples react-google-maps documentation
   onMarkerClick = (marker) => {
     this.closeMarkers()
     marker.isOpen = true
-    this.setState({ markers: this.state.markers })
+    marker.animation = window.google.maps.Animation.DROP
+    this.setState({
+      markers: this.state.markers,
+      showingInfoWindow: true,
+      activeMarker: marker
+    })
   }
 
-  // Based off documentation examples react-google-maps documentation
-  // onMapClicked = (props) => {
-  //   if (this.state.showingInfoWindow) {
-  //     this.setState({
-  //       showingInfoWindow: false,
-  //       activeMarker: null
-  //     })
-  //   }
-  // };
-
-
-  // onListClick = (e, marker) => {
-  //   e.preventDefault()
-  //   console.log(marker)
-  //   this.onMarkerClick(marker.props, marker.ref)
-  // };
+  onListClick = (e, marker) => {
+    e.preventDefault()
+    this.onMarkerClick(marker)
+  };
 
 
   render() {
@@ -73,7 +65,9 @@ class App extends Component {
         <main>
           <LanderMap
             markers={this.state.markers}
-            onMarkerClick={this.onMarkerClick}/>
+            onMarkerClick={this.onMarkerClick}
+            showingInfoWindow={this.state.showingInfoWindow}
+            activeMarker={this.state.activeMarker}/>
 
           <section className="list-view">
             <select

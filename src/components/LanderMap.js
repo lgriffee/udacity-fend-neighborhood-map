@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 import PropTypes from 'prop-types'
 
-// Based off documentation example https://tomchentw.github.io/react-google-maps/
+// Based off react-google-maps docs (https://tomchentw.github.io/react-google-maps/)
 const LanderMap = (props) => {
 
   LanderMap.propTypes = {
@@ -24,15 +24,17 @@ const LanderMap = (props) => {
               name={marker.name}
               position={marker.position}
               icon={marker.icon}
-              // animation={google.maps.Animation.DROP}
+              animation={marker.animation}
             >
-              {marker.isOpen && <InfoWindow>
-                <div>
-                  <p>{marker.name}</p>
-                </div>
-              </InfoWindow>}
+              {marker.isOpen &&
+                <InfoWindow>
+                  <div>
+                    <p>{marker.name}</p>
+                  </div>
+                </InfoWindow>
+              }
             </Marker>
-         )} */}
+         )}
       </GoogleMap>
   ))
 
