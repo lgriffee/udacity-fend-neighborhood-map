@@ -29,7 +29,7 @@ const LanderMap = (props) => {
               {marker.isOpen &&
                 <InfoWindow>
                   <div>
-                    <p>{marker.name}</p>
+                    <h3>{marker.name}</h3>
                   </div>
                 </InfoWindow>
               }
