@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import LanderMap from '../components/LanderMap'
-import LocationMarkers from '../data/LocationMarkers.json'
+// import LocationMarkers from '../data/LocationMarkers.json'
 import './App.css'
 
 // Based off react-foursquare docs (https://github.com/foursquare/react-foursquare)
@@ -29,7 +29,6 @@ class App extends Component {
   componentDidMount(){
     foursquare.venues.getVenues(params)
       .then( results => {
-        console.log(results.response.venues)
         const markers = results.response.venues.map(venue => {
           return {
             title: venue.name,
@@ -46,7 +45,6 @@ class App extends Component {
   }
 
   filterMarkers(type){
-    this.closeMarkers()
     foursquare.venues.getVenues(params)
       .then( results => {
         const markers = results.response.venues.map(venue => {
@@ -61,34 +59,41 @@ class App extends Component {
           }
         })
         if (type === "all"){
-         this.setState({ markers: markers })
+         this.setState({
+           markers: markers,
+           showingInfoWindow: false
+         })
           return
         }else{
           let typeMarkers = markers.filter(marker => marker.type === type)
-          this.setState({ markers: typeMarkers })
+          this.setState({
+            markers: typeMarkers,
+            showingInfoWindow: false
+          })
         }
       });
   }
 
-  closeMarkers = () => {
-    const closedMarkers = this.state.markers.map(marker => {
-      marker.isOpen = false
-      marker.animation = null
-      return marker
-    })
-    this.setState({ markers: closedMarkers })
-  }
 
   onMarkerClick = (marker) => {
-    this.closeMarkers()
-    marker.isOpen = true
+    if(this.state.activeMarker.name){
+      const markers = this.state.markers.map(m => {
+                        if (m === this.state.activeMarker){
+                          m.animation = null
+                        }
+                        return m
+                      })
+      this.setState({
+        markers: markers
+      })
+    }
     marker.animation = window.google.maps.Animation.DROP
     this.setState({
-      markers: this.state.markers,
       showingInfoWindow: true,
       activeMarker: marker
     })
   }
+
 
   onListClick = (e, marker) => {
     e.preventDefault()

@@ -14,5 +14,5 @@ This project is a app I built as part of the Udacity Front-End Web Developer Nan
 
 ## Built With
   * [react-google-maps](https://github.com/tomchentw/react-google-maps) - Used to create a set of React components wrapping underlying Google Maps API instances
-  * [react-foursquare](https://github.com/foursquare/react-foursquare) - Used to generate map venues
+  * [react-foursquare](https://github.com/foursquare/react-foursquare) - Used to create the data for the map markers
   * [Create React App](https://github.com/facebookincubator/create-react-app) - Used to bootstrap the project
