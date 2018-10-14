@@ -31,9 +31,11 @@ const MyMapComponent =
 
        {props.showingInfoWindow && props.activeMarker &&
          <InfoWindow
-           position={props.activeMarker.position}>
-           <div>
-             <h3>{props.activeMarker.name}</h3>
+           position={props.activeMarker.position}
+           options={{pixelOffset: new window.google.maps.Size(0,-50)}}>
+           <div className="info-window">
+             <p className="info-window-title">{props.activeMarker.name}</p>
+             <p className="info-window-subtitle">{props.activeMarker.type}</p>
            </div>
          </InfoWindow>
        }
@@ -45,16 +47,18 @@ const LanderMap = (props) => {
 
   LanderMap.propTypes = {
       markers: PropTypes.array.isRequired,
+      getTypeIcon: PropTypes.func.isRequired,
       onMarkerClick: PropTypes.func.isRequired,
       showingInfoWindow: PropTypes.bool.isRequired,
       activeMarker: PropTypes.object.isRequired
   }
 
-  const { markers, onMarkerClick, showingInfoWindow, activeMarker } = props
+  const { markers, onMarkerClick, showingInfoWindow, activeMarker, getTypeIcon } = props
 
   return (
     <MyMapComponent
       markers={markers}
+      getTypeIcon={getTypeIcon}
       onMarkerClick={onMarkerClick}
       showingInfoWindow={showingInfoWindow}
       activeMarker={activeMarker}/>

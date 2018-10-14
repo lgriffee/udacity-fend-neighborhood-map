@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material/select": "^0.40.1",
     "axios": "^0.18.0",
     "google-maps-react": "^2.0.2",
     "prop-types": "^15.6.2",
@@ -10,7 +11,8 @@
     "react-dom": "^16.5.2",
     "react-foursquare": "^1.0.3",
     "react-google-maps": "^9.4.5",
-    "react-scripts": "1.1.5"
+    "react-scripts": "1.1.5",
+    "rmwc": "^3.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
