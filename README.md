@@ -1,6 +1,6 @@
 # Udacity FEND - Neighborhood Map (React)
 
-This project is a app I built as part of the Udacity Front-End Web Developer Nanodegree Program. The app is a single page map app that uses React, the Google Maps API, and ___ to help users learn more about the town of Lander, Wyoming.
+This project is a React app I built as part of the Udacity Front-End Web Developer Nanodegree Program. The app is a single page map app that uses the Google Maps and Foursquare APIs to help users learn more about places to eat in the town of Lander, Wyoming.
 
 ## How To Run The App
 
@@ -13,6 +13,7 @@ This project is a app I built as part of the Udacity Front-End Web Developer Nan
     * If you don't have npm installed, navigate to npm's [website](https://www.npmjs.com/get-npm) to download and install the software.
 
 ## Built With
-  * [react-google-maps](https://github.com/tomchentw/react-google-maps) - Used to create a set of React components wrapping underlying Google Maps API instances
-  * [react-foursquare](https://github.com/foursquare/react-foursquare) - Used to create the data for the map markers
-  * [Create React App](https://github.com/facebookincubator/create-react-app) - Used to bootstrap the project
+  * [react-google-maps](https://github.com/tomchentw/react-google-maps) - Create a set of React components wrapping underlying Google Maps API instances
+  * [react-foursquare](https://github.com/foursquare/react-foursquare) - Get the data for the map markers
+  * [React Material Web Components](https://github.com/jamesmfriedman/rmwc) - Wrapper for Google's official Material Components for the Web
+  * [Create React App](https://github.com/facebookincubator/create-react-app) - Bootstrap the project
