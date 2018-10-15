@@ -9,7 +9,7 @@ const MyMapComponent =
     withProps({
       googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyB7MZu2VRmZQicd8qcsxGg5jBSegiT0ec0",
       loadingElement: <div style={{ height: `100%` }} />,
-      containerElement: <div className="map" />,
+      containerElement: <div className="map" role="application" />,
       mapElement: <div style={{ height: `100%` }} />,
     }),
     withScriptjs,
@@ -25,7 +25,6 @@ const MyMapComponent =
             title={marker.title}
             name={marker.name}
             position={marker.position}
-            icon={marker.icon}
             animation={marker.animation}/>
         )}
 
@@ -47,18 +46,16 @@ const LanderMap = (props) => {
 
   LanderMap.propTypes = {
       markers: PropTypes.array.isRequired,
-      getTypeIcon: PropTypes.func.isRequired,
       onMarkerClick: PropTypes.func.isRequired,
       showingInfoWindow: PropTypes.bool.isRequired,
       activeMarker: PropTypes.object.isRequired
   }
 
-  const { markers, onMarkerClick, showingInfoWindow, activeMarker, getTypeIcon } = props
+  const { markers, onMarkerClick, showingInfoWindow, activeMarker } = props
 
   return (
     <MyMapComponent
       markers={markers}
-      getTypeIcon={getTypeIcon}
       onMarkerClick={onMarkerClick}
       showingInfoWindow={showingInfoWindow}
       activeMarker={activeMarker}/>

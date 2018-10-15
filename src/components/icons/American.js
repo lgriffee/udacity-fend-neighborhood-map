@@ -1,5 +1,5 @@
 // Based off https://blog.lftechnology.com/using-svg-icons-components-in-react-44fbe8e5f91
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 const SVG = props => {

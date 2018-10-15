@@ -1,12 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
+
 import Icon from '../components/icons/Icon'
 
-import { Select } from '@rmwc/select';
-import '@material/select/dist/mdc.select.css';
+import { Select } from '@rmwc/select'
+import '@material/select/dist/mdc.select.css'
 
-import { List, ListGroup, ListDivider, SimpleListItem } from '@rmwc/list';
-import '@material/list/dist/mdc.list.css';
+import { List, ListGroup, ListDivider, SimpleListItem } from '@rmwc/list'
+import '@material/list/dist/mdc.list.css'
 
 
 const ListView = props => {
@@ -74,12 +75,13 @@ const ListView = props => {
             onChange={(event) => filterMarkers(event.target.value)}
           />
           <div className="locations-list">
-          <List twoLine avatarList>
+          <List twoLine avatarList role="list">
               {markers.map((marker, index) =>
                 <ListGroup
                   key={index}
                   onClick={(event) => onListClick(event, marker)}>
                 <SimpleListItem
+                  role="listitem"
                   graphic={getTypeIcon(marker.type)}
                   text={marker.title}
                   secondaryText={marker.type}/>

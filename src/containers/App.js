@@ -33,6 +33,7 @@ class App extends Component {
     foursquare.venues.getVenues(params)
       .then( results => {
         const markers = results.response.venues.map(venue => {
+          console.log(venue)
           return {
             title: venue.name,
             name: venue.name,
@@ -105,7 +106,7 @@ class App extends Component {
 
 
   render() {
-    const { markers } = this.state
+    const { markers, showingInfoWindow, activeMarker } = this.state
 
     return (
       <div className="app">
@@ -113,14 +114,13 @@ class App extends Component {
 
         <main>
           <LanderMap
-            markers={this.state.markers}
-            getTypeIcon={this.getTypeIcon}
+            markers={markers}
             onMarkerClick={this.onMarkerClick}
-            showingInfoWindow={this.state.showingInfoWindow}
-            activeMarker={this.state.activeMarker}/>
+            showingInfoWindow={showingInfoWindow}
+            activeMarker={activeMarker}/>
 
           <ListView
-            markers={this.state.markers}
+            markers={markers}
             filterMarkers={this.filterMarkers}
             onListClick={this.onListClick} />
         </main>

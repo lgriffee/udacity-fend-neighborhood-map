@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 const TopBar = props => {
@@ -12,9 +12,9 @@ const TopBar = props => {
 
   return (
     <header>
-      <nav className="top-nav">
+      <div className="top-bar">
         <h1>{title}</h1>
-      </nav>
+      </div>
     </header>
   )
 }
