@@ -10,6 +10,7 @@ import { List, ListGroup, ListDivider, SimpleListItem } from '@rmwc/list'
 import '@material/list/dist/mdc.list.css'
 
 
+
 const ListView = props => {
 
   ListView.propTypes = {
@@ -17,6 +18,7 @@ const ListView = props => {
       filterMarkers: PropTypes.func.isRequired,
       onListClick: PropTypes.func.isRequired
   }
+
 
   let getTypeIcon = (type) => {
     switch(type) {
@@ -59,8 +61,8 @@ const ListView = props => {
     }
   }
 
-  const { markers, filterMarkers, onListClick } = props
 
+  const { markers, filterMarkers, onListClick } = props
 
   return (
     <section className="list-view">
@@ -72,14 +74,15 @@ const ListView = props => {
             options={['All','American', 'Asian', 'Bakery', 'Bar', 'Breakfast', 'Burgers',
                       'Café', 'Coffee Shop', 'Fast Food', 'Ice Cream', 'Juice Bar', 'Mexican',
                       'Pizza', 'Sandwiches', 'Steakhouse', 'Sushi', 'Thai']}
-            onChange={(event) => filterMarkers(event.target.value)}
-          />
+            onChange={(event) => filterMarkers(event.target.value)}/>
+
           <div className="locations-list">
-          <List twoLine avatarList role="list">
+            <List twoLine avatarList role="list">
               {markers.map((marker, index) =>
                 <ListGroup
                   key={index}
                   onClick={(event) => onListClick(event, marker)}>
+
                 <SimpleListItem
                   role="listitem"
                   graphic={getTypeIcon(marker.type)}
@@ -88,7 +91,7 @@ const ListView = props => {
                   <ListDivider />
                 </ListGroup>
               )}
-          </List>
+            </List>
           </div>
       </div>
     </section>

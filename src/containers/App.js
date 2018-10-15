@@ -6,6 +6,7 @@ import TopBar from '../components/TopBar'
 import ListView from '../components/ListView'
 
 
+
 // Based off react-foursquare docs (https://github.com/foursquare/react-foursquare)
 var foursquare = require('react-foursquare')({
   clientID: 'OYDMO4WB5OB4OATXDN0SFY4IC3YEUKDQVZE30YZCBODWV3L4',
@@ -19,6 +20,7 @@ var params = {
 };
 
 
+
 class App extends Component {
 
   state = {
@@ -29,6 +31,7 @@ class App extends Component {
   }
 
 
+  // Fetch venue data from Foursquare and save to marker state array
   componentDidMount(){
     foursquare.venues.getVenues(params).then( results => {
       const markers = results.response.venues.map(venue => {
@@ -44,7 +47,10 @@ class App extends Component {
     });
   }
 
+
+  // Filter down venues by type selected
   filterMarkers = (type) => {
+    // Fetch all venue data from Foursquare
     foursquare.venues.getVenues(params).then( results => {
       const markers = results.response.venues.map(venue => {
         return {
@@ -55,6 +61,7 @@ class App extends Component {
           animation: null
         }
       })
+      // Render all venue markers when select is "all"
       if (type === "All"){
        this.setState({
          markers: markers,
@@ -63,6 +70,7 @@ class App extends Component {
        })
         return
       }else{
+        // Only render markers of same type selected
         let typeMarkers = markers.filter(marker => marker.type === type)
         this.setState({
           markers: typeMarkers,
@@ -74,7 +82,9 @@ class App extends Component {
   }
 
 
+  // Clicking marker animates it and shows info window
   onMarkerClick = (marker) => {
+    // Stop animating markers that aren't the active marker
     if(this.state.activeMarker.name &&
        this.state.activeMarker.animation != null &&
        this.state.activeMarker !== marker){
@@ -88,6 +98,7 @@ class App extends Component {
         markers: markers
       })
     }
+    // Animate markers when clicked
     marker.animation = window.google.maps.Animation.BOUNCE
       this.setState({
         showingInfoWindow: true,
@@ -95,6 +106,8 @@ class App extends Component {
       })
   }
 
+
+  // Clicking list item animates corresponding marker and shows info window
   onListClick = (e, marker) => {
     e.preventDefault()
     this.onMarkerClick(marker)

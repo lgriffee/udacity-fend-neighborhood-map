@@ -9,7 +9,6 @@ const TopBar = props => {
 
   const { title } = props
 
-
   return (
     <header>
       <div className="top-bar">

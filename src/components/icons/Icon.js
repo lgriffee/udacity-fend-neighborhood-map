@@ -19,6 +19,7 @@ import Sandwiches from "./Sandwiches"
 import Steakhouse from "./Steakhouse"
 
 
+
 const Icon = props => {
 
   Icon.propTypes = {
@@ -26,8 +27,7 @@ const Icon = props => {
       width: PropTypes.number.isRequired
   }
 
-  const { name, width } = props
-
+  // Return corresponding icon to name passed in
   let getIcon = (name) => {
     switch (name) {
     case "american":
@@ -64,6 +64,9 @@ const Icon = props => {
       return
     }
   }
+
+
+  const { name, width } = props
 
   return (getIcon(name))
 }

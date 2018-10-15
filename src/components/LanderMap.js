@@ -1,7 +1,9 @@
 import React from 'react'
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 import PropTypes from 'prop-types'
 import { compose, withProps } from "recompose"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
+
+
 
 // Based off react-google-maps docs (https://tomchentw.github.io/react-google-maps/)
 const MyMapComponent =
@@ -27,8 +29,7 @@ const MyMapComponent =
             position={marker.position}
             animation={marker.animation}/>
         )}
-
-       {props.showingInfoWindow && props.activeMarker &&
+        {props.showingInfoWindow && props.activeMarker &&
          <InfoWindow
            position={props.activeMarker.position}
            options={{pixelOffset: new window.google.maps.Size(0,-50)}}>
@@ -37,9 +38,10 @@ const MyMapComponent =
              <p className="info-window-subtitle">{props.activeMarker.type}</p>
            </div>
          </InfoWindow>
-       }
-    </GoogleMap>
+        }
+     </GoogleMap>
   )
+
 
 
 const LanderMap = (props) => {
@@ -50,6 +52,7 @@ const LanderMap = (props) => {
       showingInfoWindow: PropTypes.bool.isRequired,
       activeMarker: PropTypes.object.isRequired
   }
+
 
   const { markers, onMarkerClick, showingInfoWindow, activeMarker } = props
 
