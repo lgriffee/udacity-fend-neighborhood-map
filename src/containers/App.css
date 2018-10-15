@@ -10,6 +10,12 @@
 
   --alabaster: #fafafa;
 	--mine-shaft: #212121;
+
+  --shadow-lightest: rgba(0,0,0,0.02);
+  --shadow-lighter: rgba(0,0,0,0.2);
+  --shadow-light: rgba(0, 0, 0, 0.3);
+  --shadow-medium: rgba(0, 0, 0, 0.54);
+  --shadow-dark: rgba(0, 0, 0, 0.87);
 }
 
 
@@ -75,18 +81,18 @@ hr {
 
 .list-view-wrapper {
    padding: 10px;
-   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+   box-shadow: 0 0 20px var(--shadow-light);
 }
 
 .location-select  {
   width: 100%;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);
+  box-shadow: 0 2px 4px var(--shadow-lighter), 0 -1px 0px var(--shadow-lightest);
 }
 
 .locations-list {
   margin: 0;
   padding: 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 4px var(--shadow-lighter);
 }
 
 
@@ -113,7 +119,7 @@ hr {
     font-size: 1rem;
     line-height: 1rem;
     letter-spacing: 0.00937em;
-    color: rgba(0, 0, 0, 0.87);
+    color: var(--shadow-dark);
     margin: 0;
     padding: 8px 0;
 }
@@ -123,7 +129,7 @@ hr {
   font-size: 0.875rem;
   line-height: .8rem;
   letter-spacing: 0.01786em;
-  color: rgba(0, 0, 0, 0.54)
+  color: var(--shadow-medium);
 }
 
 

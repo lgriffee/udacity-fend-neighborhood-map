@@ -8,14 +8,14 @@ import ListView from '../components/ListView'
 
 // Based off react-foursquare docs (https://github.com/foursquare/react-foursquare)
 var foursquare = require('react-foursquare')({
-clientID: 'OYDMO4WB5OB4OATXDN0SFY4IC3YEUKDQVZE30YZCBODWV3L4',
-clientSecret: 'SWTMNWEXR2WEL3WBEU54THYRZX00LVEFEADUU5XTG2BD2BL2'
+  clientID: 'OYDMO4WB5OB4OATXDN0SFY4IC3YEUKDQVZE30YZCBODWV3L4',
+  clientSecret: 'SWTMNWEXR2WEL3WBEU54THYRZX00LVEFEADUU5XTG2BD2BL2'
 });
 
 var params = {
-"near": "Lander, WY",
-"categoryId": "4d4b7105d754a06374d81259",
-"radius":	1500
+  "near": "Lander, WY",
+  "categoryId": "4d4b7105d754a06374d81259",
+  "radius":	1500
 };
 
 
@@ -30,50 +30,47 @@ class App extends Component {
 
 
   componentDidMount(){
-    foursquare.venues.getVenues(params)
-      .then( results => {
-        const markers = results.response.venues.map(venue => {
-          console.log(venue)
-          return {
-            title: venue.name,
-            name: venue.name,
-            position: {lat: venue.location.lat, lng: venue.location.lng},
-            type: venue.categories[0] ? venue.categories[0].shortName : "none",
-            animation: null
-          }
-        })
-        this.setState({ markers: markers })
-      });
+    foursquare.venues.getVenues(params).then( results => {
+      const markers = results.response.venues.map(venue => {
+        return {
+          title: venue.name,
+          name: venue.name,
+          position: {lat: venue.location.lat, lng: venue.location.lng},
+          type: venue.categories[0] ? venue.categories[0].shortName : "none",
+          animation: null
+        }
+      })
+      this.setState({ markers: markers })
+    });
   }
 
   filterMarkers = (type) => {
-    foursquare.venues.getVenues(params)
-      .then( results => {
-        const markers = results.response.venues.map(venue => {
-          return {
-            title: venue.name,
-            name: venue.name,
-            position: {lat: venue.location.lat, lng: venue.location.lng},
-            type: venue.categories[0] ? venue.categories[0].shortName : "none",
-            animation: null
-          }
-        })
-        if (type === "All"){
-         this.setState({
-           markers: markers,
-           showingInfoWindow: false,
-           activeMarker: {}
-         })
-          return
-        }else{
-          let typeMarkers = markers.filter(marker => marker.type === type)
-          this.setState({
-            markers: typeMarkers,
-            showingInfoWindow: false,
-            activeMarker: {}
-          })
+    foursquare.venues.getVenues(params).then( results => {
+      const markers = results.response.venues.map(venue => {
+        return {
+          title: venue.name,
+          name: venue.name,
+          position: {lat: venue.location.lat, lng: venue.location.lng},
+          type: venue.categories[0] ? venue.categories[0].shortName : "none",
+          animation: null
         }
-      });
+      })
+      if (type === "All"){
+       this.setState({
+         markers: markers,
+         showingInfoWindow: false,
+         activeMarker: {}
+       })
+        return
+      }else{
+        let typeMarkers = markers.filter(marker => marker.type === type)
+        this.setState({
+          markers: typeMarkers,
+          showingInfoWindow: false,
+          activeMarker: {}
+        })
+      }
+    });
   }
 
 
