@@ -67,11 +67,9 @@ hr {
 /* === List View === */
 
 .list-view{
-  order: 1;
-	width: 30%;
-  height: 100%;
+  order: 2;
+	width: 100%;
   background: var(--alabaster);
-  z-index: 100;
   overflow-y: scroll;
 }
 
@@ -95,11 +93,10 @@ hr {
 /* === Google Map === */
 
 .map {
-  order: 2;
+  order: 1;
 	margin: 0;
-  right: 0;
-  width: 70%;
-  height: 100%;
+  width: 100%;
+  height: 70%;
   background-color: var(--alabaster);
 }
 
@@ -127,4 +124,28 @@ hr {
   line-height: .8rem;
   letter-spacing: 0.01786em;
   color: rgba(0, 0, 0, 0.54)
+}
+
+
+/*
+*
+* MEDIA QUERIES
+*
+*/
+
+@media (min-width: 800px){
+  .map {
+    order: 2;
+    right: 0;
+  	width: 70%;
+    height: 100%;
+  }
+
+  .list-view{
+    order: 1;
+  	width: 30%;
+    height: 100%;
+    z-index: 100;
+    overflow-y: scroll;
+  }
 }
