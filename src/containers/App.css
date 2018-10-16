@@ -150,7 +150,7 @@ hr {
     order: 1;
   	width: 30%;
     height: 100%;
-    z-index: 100;
+    z-index: 6;
     overflow-y: scroll;
   }
 }

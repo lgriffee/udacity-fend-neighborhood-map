@@ -5,6 +5,10 @@ import LanderMap from '../components/LanderMap'
 import TopBar from '../components/TopBar'
 import ListView from '../components/ListView'
 
+import { Dialog, DialogTitle, DialogContent, DialogActions, DialogButton } from '@rmwc/dialog';
+import '@material/dialog/dist/mdc.dialog.css';
+import '@material/button/dist/mdc.button.css';
+
 
 
 // Based off react-foursquare docs (https://github.com/foursquare/react-foursquare)
@@ -27,24 +31,41 @@ class App extends Component {
     markers: [],
     markerIcons: [],
     showingInfoWindow: false,
-    activeMarker: {}
+    activeMarker: {},
+    error: ""
   }
 
 
   // Fetch venue data from Foursquare and save to marker state array
   componentDidMount(){
     foursquare.venues.getVenues(params).then( results => {
-      const markers = results.response.venues.map(venue => {
-        return {
-          title: venue.name,
-          name: venue.name,
-          position: {lat: venue.location.lat, lng: venue.location.lng},
-          type: venue.categories[0] ? venue.categories[0].shortName : "none",
-          animation: null
-        }
-      })
+      if (results.response.venues){
+        const markers = results.response.venues.map(venue => {
+          return {
+            title: venue.name,
+            name: venue.name,
+            position: {lat: venue.location.lat, lng: venue.location.lng},
+            type: venue.categories[0] ? venue.categories[0].shortName : "none",
+            animation: null
+          }
+        })
       this.setState({ markers: markers })
-    });
+    }else{
+      this.setState({
+        standardDialogOpen: true,
+        error: "Unable to retrive venue data from Foursquare API"
+      })
+    }
+    }).catch((err) => {
+      this.setState({
+        standardDialogOpen: true,
+        error: err
+      })
+    })
+  }
+
+  componentDidCatch(error, info) {
+    console.log("OMG IT GOT ITTT: " + error + info)
   }
 
 
@@ -52,33 +73,46 @@ class App extends Component {
   filterMarkers = (type) => {
     // Fetch all venue data from Foursquare
     foursquare.venues.getVenues(params).then( results => {
-      const markers = results.response.venues.map(venue => {
-        return {
-          title: venue.name,
-          name: venue.name,
-          position: {lat: venue.location.lat, lng: venue.location.lng},
-          type: venue.categories[0] ? venue.categories[0].shortName : "none",
-          animation: null
+      if (results.response.venues){
+        const markers = results.response.venues.map(venue => {
+          return {
+            title: venue.name,
+            name: venue.name,
+            position: {lat: venue.location.lat, lng: venue.location.lng},
+            type: venue.categories[0] ? venue.categories[0].shortName : "none",
+            animation: null
+          }
+        })
+        // Render all venue markers when select is "all"
+        if (type === "All"){
+         this.setState({
+           markers: markers,
+           showingInfoWindow: false,
+           activeMarker: {}
+         })
+          return
+        }else{
+          // Only render markers of same type selected
+          let typeMarkers = markers.filter(marker => marker.type === type)
+          this.setState({
+            markers: typeMarkers,
+            showingInfoWindow: false,
+            activeMarker: {}
+          })
         }
-      })
-      // Render all venue markers when select is "all"
-      if (type === "All"){
-       this.setState({
-         markers: markers,
-         showingInfoWindow: false,
-         activeMarker: {}
-       })
-        return
       }else{
-        // Only render markers of same type selected
-        let typeMarkers = markers.filter(marker => marker.type === type)
         this.setState({
-          markers: typeMarkers,
-          showingInfoWindow: false,
-          activeMarker: {}
+          standardDialogOpen: true,
+          error: "Unable to retrive venue info from Foursquare API"
         })
       }
-    });
+    }).catch((err) => {
+      this.setState({
+        standardDialogOpen: true,
+        error: err
+      })
+      return
+    })
   }
 
 
@@ -123,6 +157,20 @@ class App extends Component {
         <TopBar title={'Lander'}/>
 
         <main>
+          <Dialog
+            className="error-dialog"
+            open={this.state.standardDialogOpen}
+            onClose={evt => {
+              console.log(evt.detail.action)
+              this.setState({standardDialogOpen: false})
+            }}>
+            <DialogTitle>The following error occured:</DialogTitle>
+            <DialogContent>{this.state.error}.</DialogContent>
+            <DialogActions>
+              <DialogButton action="close" isDefaultAction>Okay</DialogButton>
+            </DialogActions>
+          </Dialog>
+
           <LanderMap
             markers={markers}
             onMarkerClick={this.onMarkerClick}
