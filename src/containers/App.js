@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import './App.css'
 
-import LanderMap from '../components/LanderMap'
 import TopBar from '../components/TopBar'
+import LanderMap from '../components/LanderMap'
 import ListView from '../components/ListView'
+import Footer from '../components/Footer'
 
 import { Dialog, DialogTitle, DialogContent, DialogActions, DialogButton } from '@rmwc/dialog';
 import '@material/dialog/dist/mdc.dialog.css';
@@ -62,10 +63,6 @@ class App extends Component {
         error: err
       })
     })
-  }
-
-  componentDidCatch(error, info) {
-    console.log("OMG IT GOT ITTT: " + error + info)
   }
 
 
@@ -161,7 +158,6 @@ class App extends Component {
             className="error-dialog"
             open={this.state.standardDialogOpen}
             onClose={evt => {
-              console.log(evt.detail.action)
               this.setState({standardDialogOpen: false})
             }}>
             <DialogTitle>The following error occured:</DialogTitle>
@@ -182,6 +178,8 @@ class App extends Component {
             filterMarkers={this.filterMarkers}
             onListClick={this.onListClick} />
         </main>
+
+        <Footer/>
       </div>
     )
   }

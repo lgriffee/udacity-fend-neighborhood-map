@@ -25,7 +25,7 @@
 *
 */
 
-html, body, main, #root, .app {
+html, body, #root, .app {
   height: 100%;
 }
 
@@ -69,12 +69,36 @@ hr {
   color: var(--alabaster);
 }
 
+/* === Footer Navigation === */
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  background: var(--mine-shaft);
+}
+
+.footer p {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  color: var(--alabaster);
+}
+
+.footer a img {
+  width: 40px;
+  height: 40px;
+}
+
 
 /* === List View === */
 
 .list-view{
   order: 2;
 	width: 100%;
+  height: 40%;
   background: var(--alabaster);
   overflow-y: scroll;
 }
@@ -102,7 +126,7 @@ hr {
   order: 1;
 	margin: 0;
   width: 100%;
-  height: 70%;
+  height: 60%;
   background-color: var(--alabaster);
 }
 
@@ -139,6 +163,7 @@ hr {
 */
 
 @media (min-width: 800px){
+
   .map {
     order: 2;
     right: 0;
