@@ -14,8 +14,8 @@ import '@material/button/dist/mdc.button.css';
 
 // Based off react-foursquare docs (https://github.com/foursquare/react-foursquare)
 var foursquare = require('react-foursquare')({
-  clientID: 'OYDMO4WB5OB4OATXDN0SFY4IC3YEUKDQVZE30YZCBODWV3L4',
-  clientSecret: 'SWTMNWEXR2WEL3WBEU54THYRZX00LVEFEADUU5XTG2BD2BL2'
+  clientID: ${{ secrets.FSQ_CLIENT_ID }},
+  clientSecret: ${{ secrets.FSQ_CLIENT_SECRET }}
 });
 
 var params = {
