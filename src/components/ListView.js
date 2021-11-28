@@ -24,8 +24,6 @@ const ListView = props => {
     switch(type) {
     case "American":
         return <Icon name="american" width={24} />
-    case "Asian" :
-        return <Icon name="asian" width={24} />
     case "Bakery":
         return <Icon name="bakery" width={24} />
     case "Bar":
@@ -52,10 +50,10 @@ const ListView = props => {
         return <Icon name="sandwiches" width={24} />
     case "Steakhouse":
         return <Icon name="steakhouse" width={24} />
-    case "Sushi" :
-        return <Icon name="asian" width={24} />
+    case "Sushi Bar":
+        return <Icon name="sushi bar" width={24} />
     case "Thai":
-        return <Icon name="asian" width={24} />
+        return <Icon name="thai" width={24} />
     default:
         return <Icon name="food" width={24} />
     }
@@ -71,9 +69,9 @@ const ListView = props => {
             className="location-select"
             label="Cuisine Type"
             placeholder=""
-            options={['All','American', 'Asian', 'Bakery', 'Bar', 'Breakfast', 'Burgers',
+            options={['All','American', 'Bakery', 'Bar', 'Breakfast', 'Burgers',
                       'Café', 'Coffee Shop', 'Fast Food', 'Ice Cream', 'Juice Bar', 'Mexican',
-                      'Pizza', 'Sandwiches', 'Steakhouse', 'Sushi', 'Thai']}
+                      'Pizza', 'Sandwiches', 'Steakhouse', 'Sushi Bar', 'Thai']}
             onChange={(event) => filterMarkers(event.target.value)}/>
 
           <div className="locations-list">

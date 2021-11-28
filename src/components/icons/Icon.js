@@ -3,7 +3,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import American from "./American"
-import Asian from "./Asian"
 import Bakery from "./Bakery"
 import Bar from "./Bar"
 import Breakfast from "./Breakfast"
@@ -17,6 +16,8 @@ import Mexican from "./Mexican"
 import Pizza from "./Pizza"
 import Sandwiches from "./Sandwiches"
 import Steakhouse from "./Steakhouse"
+import SushiBar from "./Sushi Bar"
+import Thai from "./Thai"
 
 
 
@@ -32,8 +33,6 @@ const Icon = props => {
     switch (name) {
     case "american":
       return <American width={width} />
-    case "asian":
-      return <Asian width={width} />
     case "bakery":
       return <Bakery width={width} />
     case "bar":
@@ -60,6 +59,10 @@ const Icon = props => {
       return <Sandwiches width={width} />
     case "steakhouse":
       return <Steakhouse width={width} />
+    case "sushi bar":
+      return <SushiBar width={width} />
+    case "thai":
+      return <Thai width={width} />
     default:
       return
     }
